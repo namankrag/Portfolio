@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-accent="cyan">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naman Kumar Agrawal | AI & ML Engineer & Full-Stack Developer</title>
+  <meta name="description" content="Portfolio of Naman Kumar Agrawal - AI & ML Engineer specializing in Machine Learning Pipelines, Computer Vision Biometrics, and Full-Stack Web Applications.">
+  <meta name="keywords" content="Naman Kumar Agrawal, AI Engineer, Machine Learning, BMS College of Engineering, SmartClass AI, LoanSense AI, Python, Streamlit, Supabase">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['class', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cyan: '#06b6d4',
+              emerald: '#10b981',
+              violet: '#8b5cf6',
+              amber: '#f59e0b',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Space Grotesk', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+</head>
+<body class="min-h-screen relative selection:bg-cyan-500/30 selection:text-cyan-300">
+
+  <!-- Interactive AI Neural Network Canvas Background -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <header id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 px-4 sm:px-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#hero" class="flex items-center gap-2 group text-decoration-none">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-display font-bold text-white shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+          NA
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-bold text-base tracking-wide text-white flex items-center gap-1.5">
+            Naman Kumar Agrawal
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          </span>
+          <span class="text-xs text-slate-400 font-mono">BMSCE • AI & ML '28</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-6 glass-panel px-6 py-2 rounded-full border border-slate-800/80 shadow-lg">
+        <a href="#about" class="nav-link text-sm text-slate-300 hover:text-cyan-400 transition-colors">About</a>
+        <a href="#projects" class="nav-link text-sm text-slate-300 hover:text-cyan-400 transition-colors">Projects</a>
+        <a href="#simulators" class="nav-link text-sm text-slate-300 hover:text-cyan-400 transition-colors flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+          Live Demos
+        </a>
+        <a href="#skills" class="nav-link text-sm text-slate-300 hover:text-cyan-400 transition-colors">Skills</a>
+        <a href="#education" class="nav-link text-sm text-slate-300 hover:text-cyan-400 transition-colors">Education</a>
+        <a href="#contact" class="nav-link text-sm text-slate-300 hover:text-cyan-400 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Utility Controls (Theme, Palette, Sound, Resume) -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        
+        <!-- Palette Accent Dropdown / Buttons -->
+        <div class="hidden lg:flex items-center gap-1.5 bg-slate-900/80 p-1 rounded-lg border border-slate-800">
+          <button class="accent-selector-btn w-4 h-4 rounded-full bg-cyan-400 hover:scale-110 transition-transform" data-color="cyan" title="Cyan Neon"></button>
+          <button class="accent-selector-btn w-4 h-4 rounded-full bg-emerald-400 hover:scale-110 transition-transform" data-color="emerald" title="Emerald Matrix"></button>
+          <button class="accent-selector-btn w-4 h-4 rounded-full bg-violet-400 hover:scale-110 transition-transform" data-color="violet" title="Violet Nebula"></button>
+          <button class="accent-selector-btn w-4 h-4 rounded-full bg-amber-400 hover:scale-110 transition-transform" data-color="amber" title="Amber Sun"></button>
+        </div>
+
+        <!-- Sound Feedback Toggle -->
+        <button id="sound-toggle-btn" class="p-2 rounded-xl bg-slate-800/60 border border-slate-700/60 text-slate-300 hover:text-cyan-400 transition-colors" title="Toggle Sound Feedback">
+          <i id="sound-icon-off" data-lucide="volume-x" class="w-4 h-4"></i>
+          <i id="sound-icon-on" data-lucide="volume-2" class="w-4 h-4 hidden text-cyan-400"></i>
+        </button>
+
+        <!-- Dark / Light Theme Switcher -->
+        <button id="theme-toggle-btn" class="p-2 rounded-xl bg-slate-800/60 border border-slate-700/60 text-slate-300 hover:text-cyan-400 transition-colors" title="Toggle Theme (Key: T)">
+          <i id="theme-icon-dark" data-lucide="moon" class="w-4 h-4 text-cyan-400"></i>
+          <i id="theme-icon-light" data-lucide="sun" class="w-4 h-4 hidden text-amber-400"></i>
+        </button>
+
+        <!-- Resume Modal Trigger -->
+        <button class="btn-open-resume-modal hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/25 transition-all shadow-sm">
+          <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+          Resume
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl bg-slate-800/80 text-slate-200 border border-slate-700">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden mt-3 p-4 rounded-2xl glass-panel border border-slate-800 flex flex-col gap-3 shadow-2xl">
+      <a href="#about" class="text-sm font-medium text-slate-200 py-2 px-3 rounded-lg hover:bg-slate-800/50">About Me</a>
+      <a href="#projects" class="text-sm font-medium text-slate-200 py-2 px-3 rounded-lg hover:bg-slate-800/50">Featured Projects</a>
+      <a href="#simulators" class="text-sm font-medium text-cyan-300 py-2 px-3 rounded-lg hover:bg-slate-800/50 flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Live AI Demos
+      </a>
+      <a href="#skills" class="text-sm font-medium text-slate-200 py-2 px-3 rounded-lg hover:bg-slate-800/50">Technical Skills</a>
+      <a href="#education" class="text-sm font-medium text-slate-200 py-2 px-3 rounded-lg hover:bg-slate-800/50">Education</a>
+      <a href="#contact" class="text-sm font-medium text-slate-200 py-2 px-3 rounded-lg hover:bg-slate-800/50">Contact</a>
+      <button class="btn-open-resume-modal w-full text-center py-2 text-xs font-semibold rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+        View Full Resume
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Body -->
+  <main class="relative z-10 pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-28 sm:space-y-36">
+
+    <!-- ==========================================================================
+         HERO SECTION
+         ========================================================================== -->
+    <section id="hero" class="relative pt-6 sm:pt-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Hero Text & Content (Cols 1-7) -->
+        <div class="lg:col-span-7 space-y-6 text-left">
+          
+          <!-- Status Pill -->
+          <div class="inline-flex items-center gap-2 status-pill">
+            <span class="pulse-dot"></span>
+            <span>Open to AI/ML & Software Engineering Roles</span>
+          </div>
+
+          <!-- Main Title -->
+          <div class="space-y-2">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight text-white leading-tight">
+              Hi, I'm <br class="hidden sm:block">
+              <span class="gradient-text">Naman Kumar Agrawal</span>
+            </h1>
+            
+            <!-- Dynamic Typewriter Subhead -->
+            <div class="text-lg sm:text-2xl font-mono font-medium text-cyan-300 flex items-center min-h-[36px]">
+              <span class="text-slate-400 mr-2">&gt;</span>
+              <span id="dynamic-typewriter"></span>
+              <span class="typewriter-cursor"></span>
+            </div>
+          </div>
+
+          <!-- Bio Description -->
+          <p class="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed font-sans">
+            AI & Machine Learning undergraduate at <strong class="text-white">BMS College of Engineering, Bengaluru</strong> (<span class="text-cyan-300 font-mono font-semibold">8.7 CGPA</span>). Passionate about turning complex neural models, biometric vision algorithms, and predictive analytics into robust, production-grade applications.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="#projects" class="btn-primary">
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+              Explore Projects
+            </a>
+            <a href="#simulators" class="btn-secondary">
+              <i data-lucide="play-circle" class="w-4 h-4 text-cyan-400"></i>
+              Try Live Simulators
+            </a>
+            <a href="#contact" class="btn-secondary">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              Get in Touch
+            </a>
+          </div>
+
+          <!-- Quick Connect Chips -->
+          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap items-center gap-3 text-xs font-mono text-slate-300">
+            <a href="https://github.com/namankrag" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 hover:text-cyan-300 transition-all">
+              <i data-lucide="github" class="w-3.5 h-3.5"></i>
+              github.com/namankrag
+            </a>
+            <a href="https://linkedin.com/in/naman-kumar-agrawal123" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 hover:text-cyan-300 transition-all">
+              <i data-lucide="linkedin" class="w-3.5 h-3.5 text-blue-400"></i>
+              LinkedIn Profile
+            </a>
+            <button onclick="copyToClipboard('namankrag@gmail.com', 'Email address')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 hover:text-cyan-300 transition-all" title="Click to copy email">
+              <i data-lucide="mail" class="w-3.5 h-3.5 text-emerald-400"></i>
+              namankrag@gmail.com
+            </button>
+            <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800 text-slate-400">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-rose-400"></i>
+              Bengaluru, India
+            </span>
+          </div>
+
+        </div>
+
+        <!-- Hero Avatar Card & Floating Badges (Cols 8-12) -->
+        <div class="lg:col-span-5 flex flex-col items-center justify-center">
+          <div class="avatar-wrapper">
+            <div class="avatar-glow"></div>
+            
+            <div class="avatar-container group">
+              <img id="profile-avatar-img" src="assets/avatar.jpg" alt="Naman Kumar Agrawal - AI Engineer" class="w-full h-full object-cover">
+              
+              <!-- Live Photo Switcher Overlay -->
+              <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-4 text-center">
+                <p class="text-xs text-slate-200 mb-3 font-medium">Want to preview with your real photo?</p>
+                <button id="btn-change-avatar" class="px-3 py-1.5 rounded-lg bg-cyan-500 text-slate-950 text-xs font-bold hover:bg-cyan-400 transition-colors flex items-center gap-1.5 shadow-lg">
+                  <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+                  Upload Photo
+                </button>
+                <input type="file" id="avatar-file-input" class="hidden" accept="image/*">
+                <span class="text-[10px] text-slate-400 mt-2 font-mono">Saved in browser memory</span>
+              </div>
+            </div>
+
+            <!-- Floating Tech Badges -->
+            <div class="floating-chip chip-1 text-cyan-300">
+              <i data-lucide="cpu" class="w-4 h-4 text-cyan-400"></i>
+              <span>Python & ML</span>
+            </div>
+
+            <div class="floating-chip chip-2 text-emerald-300">
+              <i data-lucide="database" class="w-4 h-4 text-emerald-400"></i>
+              <span>Supabase & SQL</span>
+            </div>
+
+            <div class="floating-chip chip-3 text-purple-300">
+              <i data-lucide="scan-face" class="w-4 h-4 text-purple-400"></i>
+              <span>dlib 128-D Vision</span>
+            </div>
+
+            <div class="floating-chip chip-4 text-blue-300">
+              <i data-lucide="trending-up" class="w-4 h-4 text-blue-400"></i>
+              <span>0.991 ROC-AUC</span>
+            </div>
+
+          </div>
+
+          <div class="mt-6 text-center">
+            <span class="text-xs font-mono text-slate-400 flex items-center justify-center gap-1.5">
+              <i data-lucide="terminal" class="w-3.5 h-3.5 text-cyan-400"></i>
+              B.E. Artificial Intelligence & Machine Learning (2024-2028)
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Stats & Benchmarks Banner -->
+      <div id="stats-grid" class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        
+        <div class="stat-box reveal-item">
+          <div class="text-3xl sm:text-4xl font-display font-extrabold text-cyan-400 mb-1" data-counter-target="8.7" data-decimals="1">0.0</div>
+          <div class="text-xs sm:text-sm font-medium text-slate-300">College CGPA</div>
+          <div class="text-[11px] text-slate-500 font-mono mt-0.5">BMSCE Bengaluru</div>
+        </div>
+
+        <div class="stat-box reveal-item">
+          <div class="text-3xl sm:text-4xl font-display font-extrabold text-emerald-400 mb-1" data-counter-target="0.991" data-decimals="3">0.000</div>
+          <div class="text-xs sm:text-sm font-medium text-slate-300">Model ROC-AUC</div>
+          <div class="text-[11px] text-slate-500 font-mono mt-0.5">LoanSense AI ML Pipeline</div>
+        </div>
+
+        <div class="stat-box reveal-item">
+          <div class="text-3xl sm:text-4xl font-display font-extrabold text-purple-400 mb-1" data-counter-target="95.8" data-decimals="1" data-suffix="%">0.0%</div>
+          <div class="text-xs sm:text-sm font-medium text-slate-300">Held-Out Accuracy</div>
+          <div class="text-[11px] text-slate-500 font-mono mt-0.5">Gradient Boosting Classifier</div>
+        </div>
+
+        <div class="stat-box reveal-item">
+          <div class="text-3xl sm:text-4xl font-display font-extrabold text-amber-400 mb-1" data-counter-target="256" data-decimals="0" data-suffix="-D">0-D</div>
+          <div class="text-xs sm:text-sm font-medium text-slate-300">Biometric Vectors</div>
+          <div class="text-[11px] text-slate-500 font-mono mt-0.5">Voice (256-D) & Face (128-D)</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ABOUT & ENGINEERING PHILOSOPHY
+         ========================================================================== -->
+    <section id="about" class="space-y-10">
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <div class="tech-badge">CORE PRINCIPLES</div>
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
+          Bridging Intelligent Models & <span class="gradient-text">Production Web Systems</span>
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          I specialize in architecting leak-free machine learning pipelines, multi-modal biometric authentication, and data-driven backend applications with a focus on speed, anti-spoofing resilience, and clarity.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Pillar 1: Computer Vision & Biometrics -->
+        <div class="glass-card p-6 space-y-4 reveal-item">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+            <i data-lucide="scan" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-display font-bold text-white">Applied Vision & Audio</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Hands-on implementation of dlib 128-D facial embeddings, FFT anti-spoofing frequency filters, and Resemblyzer 256-D speaker embeddings for resilient authentication.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-2">
+            <span class="tech-badge text-[11px]">dlib</span>
+            <span class="tech-badge text-[11px]">Resemblyzer</span>
+            <span class="tech-badge text-[11px]">Librosa</span>
+          </div>
+        </div>
+
+        <!-- Pillar 2: Machine Learning Pipelines -->
+        <div class="glass-card p-6 space-y-4 reveal-item">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+            <i data-lucide="git-merge" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-display font-bold text-white">End-to-End ML Pipelines</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Constructing leak-free ColumnTransformers, 5-fold stratified cross-validation benchmarks, hyperparameter tuning, model fairness verification, and joblib deployment.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-2">
+            <span class="tech-badge text-[11px]">Scikit-Learn</span>
+            <span class="tech-badge text-[11px]">Gradient Boosting</span>
+            <span class="tech-badge text-[11px]">Joblib</span>
+          </div>
+        </div>
+
+        <!-- Pillar 3: Resilient Backend Architecture -->
+        <div class="glass-card p-6 space-y-4 reveal-item">
+          <div class="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400">
+            <i data-lucide="server" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-display font-bold text-white">Full-Stack & Backend</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Building intuitive user interfaces with Streamlit, paired with Supabase and relational/NoSQL backends, implementing bcrypt password hashing, and retry resilience.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-2">
+            <span class="tech-badge text-[11px]">Streamlit</span>
+            <span class="tech-badge text-[11px]">Supabase</span>
+            <span class="tech-badge text-[11px]">bcrypt</span>
+          </div>
+        </div>
+
+        <!-- Pillar 4: Technical Leadership & Community -->
+        <div class="glass-card p-6 space-y-4 reveal-item">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+            <i data-lucide="users" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-display font-bold text-white">Leadership & Growth</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Active volunteer at PhaseShift'26, coordinating college festival logistics and tech teams. Lifelong enthusiasm for research, tech communities, and cricket.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-2">
+            <span class="tech-badge text-[11px]">PhaseShift'26</span>
+            <span class="tech-badge text-[11px]">Event Ops</span>
+            <span class="tech-badge text-[11px]">Research</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         FEATURED PROJECTS SECTION
+         ========================================================================== -->
+    <section id="projects" class="space-y-12">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div class="space-y-2">
+          <div class="tech-badge">FEATURED WORK</div>
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
+            Production-Focused <span class="gradient-text">AI & ML Projects</span>
+          </h2>
+          <p class="text-slate-400 text-sm max-w-xl">
+            Detailed architectures engineered with rigorous validation, biometrics anti-spoofing, and interactive data hubs.
+          </p>
+        </div>
+        <div>
+          <a href="https://github.com/namankrag" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors">
+            Explore all repositories on GitHub <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="space-y-10">
+
+        <!-- PROJECT 1: SMARTCLASS AI -->
+        <div class="glass-card p-6 sm:p-8 lg:p-10 reveal-item">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <div class="lg:col-span-7 space-y-5">
+              
+              <!-- Category & Badges -->
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-3 py-1 rounded-md text-xs font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                  COMPUTER VISION & AUDIO AI
+                </span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono text-slate-400 bg-slate-900 border border-slate-800">
+                  Dual Biometrics
+                </span>
+              </div>
+
+              <h3 class="text-2xl sm:text-3xl font-display font-bold text-white">
+                SmartClass – AI-Powered Smart Attendance Management System
+              </h3>
+
+              <p class="text-sm text-slate-300 leading-relaxed">
+                A deployed web-based biometric attendance system with role-segregated teacher and student portals, replacing manual roll calls with continuous multi-modal face and voice verification.
+              </p>
+
+              <!-- Technical Highlights Bullet List -->
+              <div class="space-y-2.5 pt-2">
+                <div class="feature-bullet">
+                  <strong class="text-white">Face Biometrics with dlib (128-D Embeddings):</strong> Employs ±15° micro-tilt passes for natural classroom photography; matches exclusively against students enrolled in the selected subject roster to prevent cross-class false positives.
+                </div>
+                <div class="feature-bullet">
+                  <strong class="text-white">Passive FFT Anti-Spoofing:</strong> Fast Fourier Transform frequency domain filter detects screen glare, rectangular device bezels, and Moiré patterns, blocking electronic photo/video spoofing attempts.
+                </div>
+                <div class="feature-bullet">
+                  <strong class="text-white">Voice Biometrics (256-D Speaker Vectors):</strong> Integrates Resemblyzer with Librosa audio segmentation, splitting classroom audio and authenticating speakers via cosine similarity thresholds.
+                </div>
+                <div class="feature-bullet">
+                  <strong class="text-white">Dynamic QR Enrollment (Segno):</strong> Auto-enrollment links with student login verification, combined with real-time teacher manual override reviews before database commit.
+                </div>
+                <div class="feature-bullet">
+                  <strong class="text-white">Resilient Supabase Backend:</strong> Configured exponential-backoff retry logic for reliable database transactions, bcrypt password hashing, and Python version compatibility patches.
+                </div>
+              </div>
+
+              <!-- Tech Stack Tags -->
+              <div class="flex flex-wrap gap-2 pt-3">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">Streamlit</span>
+                <span class="tech-badge">Supabase</span>
+                <span class="tech-badge">dlib</span>
+                <span class="tech-badge">Resemblyzer</span>
+                <span class="tech-badge">Librosa</span>
+                <span class="tech-badge">bcrypt</span>
+                <span class="tech-badge">Segno</span>
+              </div>
+
+              <!-- Project Links & Simulator Jump -->
+              <div class="flex flex-wrap items-center gap-4 pt-4">
+                <a href="https://github.com/namankrag" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-2.5 px-4">
+                  <i data-lucide="github" class="w-4 h-4"></i>
+                  GitHub Repository
+                </a>
+                <a href="#smartclass-demo" class="btn-secondary text-xs py-2.5 px-4">
+                  <i data-lucide="scan-face" class="w-4 h-4 text-cyan-400"></i>
+                  Interactive Biometrics Lab
+                </a>
+              </div>
+
+            </div>
+
+            <!-- Visual Blueprint & Architecture Card (Cols 8-12) -->
+            <div class="lg:col-span-5 bg-slate-950/80 rounded-xl p-5 border border-slate-800 space-y-4 font-mono text-xs text-slate-300">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                <span class="text-cyan-400 font-bold flex items-center gap-1.5">
+                  <i data-lucide="shield-check" class="w-4 h-4"></i> SmartClass Architecture
+                </span>
+                <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Deployed</span>
+              </div>
+
+              <div class="space-y-3">
+                <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800">
+                  <div class="text-slate-400 text-[11px] mb-1">VISUAL PIPELINE</div>
+                  <div class="text-white font-semibold flex items-center justify-between">
+                    <span>Camera / Photo Input</span>
+                    <span class="text-cyan-300">±15° Tilt Pass</span>
+                  </div>
+                  <div class="text-[11px] text-slate-400 mt-1">↳ dlib 128-D Euclidean Vector ➔ FFT Anti-Spoof</div>
+                </div>
+
+                <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800">
+                  <div class="text-slate-400 text-[11px] mb-1">AUDIO PIPELINE</div>
+                  <div class="text-white font-semibold flex items-center justify-between">
+                    <span>Librosa Segmentation</span>
+                    <span class="text-purple-300">256-D Embedding</span>
+                  </div>
+                  <div class="text-[11px] text-slate-400 mt-1">↳ Resemblyzer Cosine Similarity Matching</div>
+                </div>
+
+                <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800">
+                  <div class="text-slate-400 text-[11px] mb-1">BACKEND & STORAGE</div>
+                  <div class="text-white font-semibold flex items-center justify-between">
+                    <span>Supabase Cloud DB</span>
+                    <span class="text-emerald-300">Bcrypt + Retries</span>
+                  </div>
+                  <div class="text-[11px] text-slate-400 mt-1">↳ Subject-Scoped Roster Isolation Filter</div>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-lg bg-cyan-500/5 border border-cyan-500/20 text-cyan-300 text-[11px] flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 flex-shrink-0"></i>
+                Zero cross-class false matching with enrolled subject filtering.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PROJECT 2: LOANSENSE AI -->
+        <div class="glass-card p-6 sm:p-8 lg:p-10 reveal-item">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <div class="lg:col-span-7 space-y-5">
+              
+              <!-- Category & Badges -->
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-3 py-1 rounded-md text-xs font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  MACHINE LEARNING & CREDIT RISK
+                </span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono text-slate-400 bg-slate-900 border border-slate-800">
+                  95.8% Test Accuracy
+                </span>
+              </div>
+
+              <h3 class="text-2xl sm:text-3xl font-display font-bold text-white">
+                LoanSense AI – Loan Approval Prediction & Credit Risk Analytics
+              </h3>
+
+              <p class="text-sm text-slate-300 leading-relaxed">
+                An end-to-end automated machine learning credit underwriting platform that predicts loan approval probabilities, calculates risk tiers, and surfaces dynamic sensitivity dashboards.
+              </p>
+
+              <!-- Technical Highlights Bullet List -->
+              <div class="space-y-2.5 pt-2">
+                <div class="feature-bullet">
+                  <strong class="text-white">High-Performance Gradient Boosting:</strong> Tuned ensemble classifier achieving <span class="text-emerald-400 font-mono font-bold">0.942 F1-score</span>, <span class="text-emerald-400 font-mono font-bold">0.991 ROC-AUC</span>, and <span class="text-emerald-400 font-mono font-bold">95.8% accuracy</span> on held-out test datasets.
+                </div>
+                <div class="feature-bullet">
+                  <strong class="text-white">Rigorous 5-Fold Stratified Benchmark:</strong> Systematically evaluated 7 classifiers; tree ensembles consistently outperformed linear baselines by ~0.16 F1 margin.
+                </div>
+                <div class="feature-bullet">
+                  <strong class="text-white">Leak-Free Scikit-Learn Pipeline:</strong> Engineered modular ColumnTransformers with median/mode imputation, standard scaling, and one-hot encoding serialized cleanly via joblib.
+                </div>
+                <div class="feature-bullet">
+                  <strong class="text-white">Explainability & Fairness Verification:</strong> In-depth EDA demonstrated Debt-to-Income ratio (~52%) and Credit Score (~38%) govern ~90% of approval decisions; verified protected demographics had near-zero importance.
+                </div>
+                <div class="feature-bullet">
+                  <strong class="text-white">Interactive Streamlit Intelligence Hub:</strong> Built live risk gauge, Plotly EDA visualization suite, model leaderboard, and custom cutoff sensitivity simulation.
+                </div>
+              </div>
+
+              <!-- Tech Stack Tags -->
+              <div class="flex flex-wrap gap-2 pt-3">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">Scikit-Learn</span>
+                <span class="tech-badge">Plotly</span>
+                <span class="tech-badge">Streamlit</span>
+                <span class="tech-badge">Joblib</span>
+                <span class="tech-badge">Jupyter</span>
+                <span class="tech-badge">ColumnTransformer</span>
+              </div>
+
+              <!-- Project Links & Simulator Jump -->
+              <div class="flex flex-wrap items-center gap-4 pt-4">
+                <a href="https://github.com/namankrag" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-2.5 px-4">
+                  <i data-lucide="github" class="w-4 h-4"></i>
+                  GitHub Repository
+                </a>
+                <a href="#loansense-demo" class="btn-secondary text-xs py-2.5 px-4">
+                  <i data-lucide="sliders" class="w-4 h-4 text-emerald-400"></i>
+                  Interactive Risk Simulator
+                </a>
+              </div>
+
+            </div>
+
+            <!-- Model Metrics & Benchmarking Card (Cols 8-12) -->
+            <div class="lg:col-span-5 bg-slate-950/80 rounded-xl p-5 border border-slate-800 space-y-4 font-mono text-xs text-slate-300">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                <span class="text-emerald-400 font-bold flex items-center gap-1.5">
+                  <i data-lucide="bar-chart-3" class="w-4 h-4"></i> LoanSense ML Benchmark
+                </span>
+                <span class="text-[10px] text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded">5-Fold Stratified CV</span>
+              </div>
+
+              <div class="space-y-2.5">
+                <div>
+                  <div class="flex justify-between text-[11px] mb-1">
+                    <span>ROC-AUC Metric</span>
+                    <span class="text-emerald-400 font-bold">0.991</span>
+                  </div>
+                  <div class="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
+                    <div class="h-full bg-emerald-400 rounded-full" style="width: 99.1%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-[11px] mb-1">
+                    <span>F1-Score (Ensemble)</span>
+                    <span class="text-cyan-400 font-bold">0.942</span>
+                  </div>
+                  <div class="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
+                    <div class="h-full bg-cyan-400 rounded-full" style="width: 94.2%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-[11px] mb-1">
+                    <span>Test Accuracy</span>
+                    <span class="text-purple-400 font-bold">95.8%</span>
+                  </div>
+                  <div class="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
+                    <div class="h-full bg-purple-400 rounded-full" style="width: 95.8%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 space-y-1.5 text-[11px]">
+                <div class="text-slate-400 font-bold">TOP DECISION DRIVERS (EDA)</div>
+                <div class="flex justify-between text-slate-300">
+                  <span>1. Debt-to-Income (DTI)</span>
+                  <span class="text-emerald-400 font-bold">~52%</span>
+                </div>
+                <div class="flex justify-between text-slate-300">
+                  <span>2. Credit Score</span>
+                  <span class="text-cyan-400 font-bold">~38%</span>
+                </div>
+                <div class="flex justify-between text-slate-300">
+                  <span>3. Income & Loan Ratio</span>
+                  <span class="text-slate-400 font-bold">~10%</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         INTERACTIVE AI / ML SIMULATORS (LIVE PLAYGROUND)
+         ========================================================================== -->
+    <section id="simulators" class="space-y-10 scroll-mt-24">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <div class="tech-badge">INTERACTIVE LAB</div>
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
+          Test My Models in <span class="gradient-text">Real-Time</span>
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          Experience the mathematical logic and heuristics from my projects directly in your browser.
+        </p>
+      </div>
+
+      <!-- SIMULATOR 1: LOANSENSE RISK UNDERWRITER -->
+      <div id="loansense-demo" class="glass-card p-6 sm:p-8 lg:p-10 border-emerald-500/20 reveal-item">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-5 mb-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+              <i data-lucide="calculator" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-display font-bold text-white">LoanSense AI: Interactive Underwriting Simulator</h3>
+              <p class="text-xs text-slate-400">Emulating the Gradient Boosting decision function & feature attribution</p>
+            </div>
+          </div>
+          
+          <!-- Preset Buttons -->
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-slate-400 mr-1 hidden sm:inline">Presets:</span>
+            <button onclick="setLoanPreset('prime')" class="px-2.5 py-1 text-xs font-mono rounded bg-slate-900 border border-slate-700 hover:border-emerald-400 text-slate-300 hover:text-white transition-colors">Prime</button>
+            <button onclick="setLoanPreset('moderate')" class="px-2.5 py-1 text-xs font-mono rounded bg-slate-900 border border-slate-700 hover:border-amber-400 text-slate-300 hover:text-white transition-colors">Borderline</button>
+            <button onclick="setLoanPreset('subprime')" class="px-2.5 py-1 text-xs font-mono rounded bg-slate-900 border border-slate-700 hover:border-rose-400 text-slate-300 hover:text-white transition-colors">High Risk</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Sliders Controls (Cols 1-7) -->
+          <div class="lg:col-span-7 space-y-6">
+            
+            <!-- Credit Score Slider -->
+            <div class="space-y-2">
+              <div class="flex justify-between items-center text-xs font-mono">
+                <span class="text-slate-300 font-semibold flex items-center gap-1.5">
+                  <i data-lucide="award" class="w-3.5 h-3.5 text-cyan-400"></i> Credit Score (300 - 850)
+                </span>
+                <span id="val-credit-score" class="text-cyan-400 font-bold text-sm bg-slate-900 px-2.5 py-0.5 rounded border border-slate-800">720</span>
+              </div>
+              <input type="range" id="sim-credit-score" min="300" max="850" value="720" step="5">
+              <div class="flex justify-between text-[10px] text-slate-500 font-mono">
+                <span>Poor (300)</span>
+                <span>Fair (580)</span>
+                <span>Good (670)</span>
+                <span>Excellent (850)</span>
+              </div>
+            </div>
+
+            <!-- Debt to Income (DTI) Slider -->
+            <div class="space-y-2">
+              <div class="flex justify-between items-center text-xs font-mono">
+                <span class="text-slate-300 font-semibold flex items-center gap-1.5">
+                  <i data-lucide="percent" class="w-3.5 h-3.5 text-emerald-400"></i> Debt-to-Income Ratio (DTI)
+                </span>
+                <span id="val-dti" class="text-emerald-400 font-bold text-sm bg-slate-900 px-2.5 py-0.5 rounded border border-slate-800">22%</span>
+              </div>
+              <input type="range" id="sim-dti" min="5" max="65" value="22" step="1">
+              <div class="flex justify-between text-[10px] text-slate-500 font-mono">
+                <span>Low Risk (&lt;20%)</span>
+                <span>Manageable (35%)</span>
+                <span>Severe (&gt;50%)</span>
+              </div>
+            </div>
+
+            <!-- Annual Income Slider -->
+            <div class="space-y-2">
+              <div class="flex justify-between items-center text-xs font-mono">
+                <span class="text-slate-300 font-semibold flex items-center gap-1.5">
+                  <i data-lucide="dollar-sign" class="w-3.5 h-3.5 text-amber-400"></i> Annual Gross Income ($)
+                </span>
+                <span id="val-income" class="text-amber-400 font-bold text-sm bg-slate-900 px-2.5 py-0.5 rounded border border-slate-800">$85,000</span>
+              </div>
+              <input type="range" id="sim-income" min="15000" max="250000" value="85000" step="2500">
+            </div>
+
+            <!-- Loan Amount Slider -->
+            <div class="space-y-2">
+              <div class="flex justify-between items-center text-xs font-mono">
+                <span class="text-slate-300 font-semibold flex items-center gap-1.5">
+                  <i data-lucide="credit-card" class="w-3.5 h-3.5 text-purple-400"></i> Requested Loan Amount ($)
+                </span>
+                <span id="val-loan-amount" class="text-purple-400 font-bold text-sm bg-slate-900 px-2.5 py-0.5 rounded border border-slate-800">$20,000</span>
+              </div>
+              <input type="range" id="sim-loan-amount" min="2000" max="100000" value="20000" step="1000">
+            </div>
+
+            <!-- Decision Cutoff Sensitivity -->
+            <div class="pt-2 border-t border-slate-800/80">
+              <div class="flex justify-between items-center text-xs font-mono mb-1.5">
+                <span class="text-slate-400 flex items-center gap-1">
+                  <i data-lucide="git-commit" class="w-3.5 h-3.5"></i> Risk Decision Threshold Cutoff:
+                </span>
+                <span id="val-cutoff" class="text-slate-300 font-bold">65%</span>
+              </div>
+              <input type="range" id="sim-cutoff" min="40" max="85" value="65" step="1">
+            </div>
+
+          </div>
+
+          <!-- Real-Time Output & Circular Gauge (Cols 8-12) -->
+          <div class="lg:col-span-5 flex flex-col items-center justify-center p-6 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-5 text-center">
+            
+            <!-- SVG Circular Gauge -->
+            <div class="relative w-40 h-40 flex items-center justify-center">
+              <svg class="w-full h-full gauge-svg" viewBox="0 0 100 100">
+                <circle class="gauge-bg" cx="50" cy="50" r="40" />
+                <circle id="loan-gauge-progress" class="gauge-progress" cx="50" cy="50" r="40" stroke-dasharray="251.3" stroke-dashoffset="30" />
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                <span id="loan-prob-value" class="text-3xl font-display font-extrabold text-white">88%</span>
+                <span class="text-[10px] uppercase font-mono tracking-wider text-slate-400">Approval Score</span>
+              </div>
+            </div>
+
+            <!-- Risk Status Pill -->
+            <div id="loan-risk-badge" class="status-pill text-emerald-400 bg-emerald-500/10 border-emerald-500/30">
+              <span class="pulse-dot"></span> Low Risk • Instant Approval
+            </div>
+
+            <!-- Decision Text -->
+            <p id="loan-decision-text" class="text-xs text-slate-300 leading-relaxed max-w-sm px-2">
+              Metrics comfortably satisfy underwriting thresholds. Robust debt-to-income and top-tier credit score.
+            </p>
+
+            <!-- Real-Time Feature Attribution Breakdown (SHAP representation) -->
+            <div class="w-full space-y-2 pt-3 border-t border-slate-800/80 text-left font-mono text-[11px]">
+              <div class="text-slate-400 text-[10px] font-bold">ESTIMATED FEATURE IMPACT:</div>
+              
+              <div>
+                <div class="flex justify-between text-slate-300 mb-0.5">
+                  <span>DTI Ratio (~52% weight)</span>
+                  <span class="text-emerald-400 font-bold">+Positive</span>
+                </div>
+                <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                  <div id="feat-dti-bar" class="h-full bg-emerald-400 rounded-full" style="width: 75%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-300 mb-0.5">
+                  <span>Credit Score (~38% weight)</span>
+                  <span class="text-emerald-400 font-bold">+Positive</span>
+                </div>
+                <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                  <div id="feat-credit-bar" class="h-full bg-emerald-400 rounded-full" style="width: 68%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-300 mb-0.5">
+                  <span>Income / Loan Amount (~10%)</span>
+                  <span class="text-emerald-400 font-bold">+Positive</span>
+                </div>
+                <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                  <div id="feat-income-bar" class="h-full bg-emerald-400 rounded-full" style="width: 45%"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SIMULATOR 2: SMARTCLASS BIOMETRICS & ANTI-SPOOFING -->
+      <div id="smartclass-demo" class="glass-card p-6 sm:p-8 lg:p-10 border-cyan-500/20 reveal-item">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-5 mb-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+              <i data-lucide="scan-face" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-display font-bold text-white">SmartClass AI: Biometrics & Anti-Spoofing Simulator</h3>
+              <p class="text-xs text-slate-400">dlib 128-D face embeddings, FFT frequency anti-spoofing & Resemblyzer voice matching</p>
+            </div>
+          </div>
+
+          <!-- Scenario Picker -->
+          <div class="flex items-center gap-2">
+            <label for="bio-scenario" class="text-xs text-slate-400 font-mono">Test Attack:</label>
+            <select id="bio-scenario" class="bg-slate-900 border border-slate-700 text-cyan-300 text-xs rounded-lg px-3 py-1.5 font-mono outline-none focus:border-cyan-400">
+              <option value="genuine">Genuine Student (Classroom Lighting)</option>
+              <option value="spoof_screen">Spoof Attack: Tablet / Mobile Screen</option>
+              <option value="tilted_pass">Classroom Micro-Tilt (±15° Angle)</option>
+              <option value="cross_class">Unenrolled Student (Cross-Class Mismatch)</option>
+            </select>
+            <button id="btn-test-biometrics" class="px-3 py-1.5 rounded-lg bg-cyan-500 text-slate-950 font-bold text-xs hover:bg-cyan-400 transition-colors flex items-center gap-1 shadow">
+              <i data-lucide="play" class="w-3.5 h-3.5"></i> Test
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          <!-- Visual & Audio Inspection Monitor (Cols 1-6) -->
+          <div class="lg:col-span-6 space-y-4">
+            
+            <!-- Mock Scanner Viewport -->
+            <div class="relative bg-slate-950 rounded-2xl p-4 border border-slate-800 overflow-hidden">
+              <div class="flex justify-between items-center text-xs font-mono text-slate-400 mb-2 border-b border-slate-800 pb-2">
+                <span class="flex items-center gap-1.5 text-cyan-400">
+                  <i data-lucide="camera" class="w-3.5 h-3.5"></i> OPTICAL SENSOR FEED (1080p)
+                </span>
+                <span class="text-emerald-400 text-[10px]">PASSIVE FFT ACTIVE</span>
+              </div>
+
+              <!-- Scanner Area -->
+              <div class="relative h-44 bg-slate-900/90 rounded-xl flex items-center justify-center border border-dashed border-slate-700 overflow-hidden">
+                
+                <!-- Target Reticle -->
+                <div class="w-32 h-36 border-2 border-cyan-400/80 rounded-2xl relative flex items-center justify-center animate-pulse">
+                  <div class="w-full h-0.5 bg-cyan-400 absolute top-0 animate-bounce"></div>
+                  <i data-lucide="user" class="w-16 h-16 text-slate-600"></i>
+                </div>
+
+                <!-- Scan Sweep Overlay -->
+                <div id="scan-overlay-anim" class="absolute inset-0 bg-gradient-to-b from-cyan-500/20 to-transparent pointer-events-none opacity-0 transition-opacity duration-300"></div>
+
+                <!-- Live Watermark Tags -->
+                <div class="absolute bottom-2 left-3 text-[10px] font-mono text-cyan-400/80 bg-slate-950/90 px-2 py-0.5 rounded">
+                  Micro-Tilt: <span id="bio-tilt-angle">+4.2°</span>
+                </div>
+                <div class="absolute bottom-2 right-3 text-[10px] font-mono text-slate-400 bg-slate-950/90 px-2 py-0.5 rounded">
+                  dlib: 128-D Vector
+                </div>
+              </div>
+
+              <!-- FFT Frequency Spectrum Bars -->
+              <div class="mt-3 space-y-1">
+                <div class="flex justify-between text-[10px] font-mono text-slate-400">
+                  <span>FFT FREQUENCY DOMAIN SPECTRUM (Moiré & Bezel Glare Detection)</span>
+                  <span class="text-cyan-400">24 Bins</span>
+                </div>
+                <div id="fft-bars-container" class="fft-container">
+                  <!-- Generated via JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Voice Biometrics Waveform -->
+            <div class="bg-slate-950 rounded-2xl p-4 border border-slate-800 space-y-2">
+              <div class="flex justify-between items-center text-xs font-mono text-slate-400">
+                <span class="flex items-center gap-1.5 text-purple-400">
+                  <i data-lucide="mic" class="w-3.5 h-3.5"></i> RESEMBLYZER 256-D VOICEPRINT
+                </span>
+                <span class="text-[10px] text-slate-500">Librosa Spectral Audio</span>
+              </div>
+              <canvas id="waveform-canvas"></canvas>
+            </div>
+
+          </div>
+
+          <!-- Diagnostic Telemetry & Match Verdict (Cols 7-12) -->
+          <div class="lg:col-span-6 flex flex-col justify-between space-y-4">
+            
+            <div class="bg-slate-950/90 rounded-2xl p-5 border border-slate-800 space-y-4 font-mono text-xs">
+              
+              <div class="text-xs font-bold text-white border-b border-slate-800 pb-2 flex items-center justify-between">
+                <span>BIOMETRIC TELEMETRY ENGINE</span>
+                <span class="text-cyan-400 text-[11px]">Real-time Verification</span>
+              </div>
+
+              <!-- Parameter 1: Face Vector Distance -->
+              <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-900 border border-slate-800/80">
+                <div>
+                  <div class="text-slate-400 text-[11px]">128-D Euclidean Distance</div>
+                  <div id="bio-embed-dist" class="text-white font-semibold text-xs mt-0.5">0.24 (Threshold: &lt; 0.60)</div>
+                </div>
+                <span class="text-emerald-400 font-bold text-xs">MATCH</span>
+              </div>
+
+              <!-- Parameter 2: FFT Spoof Probability -->
+              <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-900 border border-slate-800/80">
+                <div>
+                  <div class="text-slate-400 text-[11px]">FFT Screen Moiré Index</div>
+                  <div id="bio-spoof-score" class="text-white font-semibold text-xs mt-0.5">0.04 (Threshold: &lt; 0.25)</div>
+                </div>
+                <span class="text-emerald-400 font-bold text-xs">PASSED</span>
+              </div>
+
+              <!-- Parameter 3: Voice Cosine Similarity -->
+              <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-900 border border-slate-800/80">
+                <div>
+                  <div class="text-slate-400 text-[11px]">256-D Voice Cosine Similarity</div>
+                  <div id="bio-speaker-sim" class="text-white font-semibold text-xs mt-0.5">0.91 (Threshold: &gt; 0.82)</div>
+                </div>
+                <span class="text-purple-400 font-bold text-xs">VERIFIED</span>
+              </div>
+
+            </div>
+
+            <!-- Verdict Card -->
+            <div id="bio-status-box" class="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-xl">
+              <!-- Dynamically populated via JS updateScenario() -->
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         TECHNICAL SKILLS MATRIX (FILTERABLE)
+         ========================================================================== -->
+    <section id="skills" class="space-y-10">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <div class="tech-badge">TECHNICAL EXPERTISE</div>
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
+          Tools, Languages & <span class="gradient-text">Core Competencies</span>
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          A comprehensive breakdown of my programming stack, machine learning frameworks, and infrastructure tooling.
+        </p>
+
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap items-center justify-center gap-2 pt-4">
+          <button class="tab-btn skill-filter-btn active" data-category="all">All Skills</button>
+          <button class="tab-btn skill-filter-btn" data-category="aiml">AI & Machine Learning</button>
+          <button class="tab-btn skill-filter-btn" data-category="languages">Programming Languages</button>
+          <button class="tab-btn skill-filter-btn" data-category="web">Web & Backend</button>
+          <button class="tab-btn skill-filter-btn" data-category="tools">Databases & Tools</button>
+        </div>
+      </div>
+
+      <!-- Skills Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Skill 1: Python -->
+        <div class="glass-card p-6 flex flex-col justify-between skill-card reveal-item" data-category="languages">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold text-sm">Py</div>
+                <h4 class="font-display font-bold text-white text-base">Python</h4>
+              </div>
+              <span class="text-xs font-mono font-semibold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded">Advanced</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Primary language for ML modeling, data engineering, computer vision algorithms, and backend scripting.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap gap-1.5">
+            <span class="tech-badge text-[10px]">NumPy</span>
+            <span class="tech-badge text-[10px]">Pandas</span>
+            <span class="tech-badge text-[10px]">Joblib</span>
+          </div>
+        </div>
+
+        <!-- Skill 2: Machine Learning & Scikit-Learn -->
+        <div class="glass-card p-6 flex flex-col justify-between skill-card reveal-item" data-category="aiml">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                  <i data-lucide="brain" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-display font-bold text-white text-base">Machine Learning & Scikit-Learn</h4>
+              </div>
+              <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Core ML</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Ensemble modeling (Gradient Boosting, Random Forest), ColumnTransformers, 5-fold cross-validation, hyperparameter tuning.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap gap-1.5">
+            <span class="tech-badge text-[10px]">Gradient Boosting</span>
+            <span class="tech-badge text-[10px]">EDA</span>
+            <span class="tech-badge text-[10px]">Pipelines</span>
+          </div>
+        </div>
+
+        <!-- Skill 3: Computer Vision & Biometrics -->
+        <div class="glass-card p-6 flex flex-col justify-between skill-card reveal-item" data-category="aiml">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+                  <i data-lucide="scan" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-display font-bold text-white text-base">Face & Voice Recognition</h4>
+              </div>
+              <span class="text-xs font-mono font-semibold text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded">Biometrics</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              dlib 128-D face embeddings, FFT anti-spoofing frequency filters, Resemblyzer 256-D speaker embeddings, and Librosa audio analysis.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap gap-1.5">
+            <span class="tech-badge text-[10px]">dlib</span>
+            <span class="tech-badge text-[10px]">FFT Analysis</span>
+            <span class="tech-badge text-[10px]">Resemblyzer</span>
+          </div>
+        </div>
+
+        <!-- Skill 4: Java & C -->
+        <div class="glass-card p-6 flex flex-col justify-between skill-card reveal-item" data-category="languages">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-sm">☕</div>
+                <h4 class="font-display font-bold text-white text-base">Java & C</h4>
+              </div>
+              <span class="text-xs font-mono font-semibold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">Foundations</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Object-oriented programming, data structures, low-level memory management, and algorithmic problem-solving.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap gap-1.5">
+            <span class="tech-badge text-[10px]">OOP</span>
+            <span class="tech-badge text-[10px]">Data Structures</span>
+            <span class="tech-badge text-[10px]">Algorithms</span>
+          </div>
+        </div>
+
+        <!-- Skill 5: JavaScript & SQL -->
+        <div class="glass-card p-6 flex flex-col justify-between skill-card reveal-item" data-category="languages">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 font-bold text-sm">JS</div>
+                <h4 class="font-display font-bold text-white text-base">JavaScript & SQL</h4>
+              </div>
+              <span class="text-xs font-mono font-semibold text-yellow-400 bg-yellow-500/10 px-2 py-0.5 rounded">Full-Stack</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Dynamic UI interactivity, relational querying, complex JOINs, data normalization, and asynchronous API integrations.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap gap-1.5">
+            <span class="tech-badge text-[10px]">ES6+</span>
+            <span class="tech-badge text-[10px]">Relational SQL</span>
+            <span class="tech-badge text-[10px]">Async/Await</span>
+          </div>
+        </div>
+
+        <!-- Skill 6: Web Development & Streamlit -->
+        <div class="glass-card p-6 flex flex-col justify-between skill-card reveal-item" data-category="web">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400">
+                  <i data-lucide="layout" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-display font-bold text-white text-base">Web Development & Streamlit</h4>
+              </div>
+              <span class="text-xs font-mono font-semibold text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded">UI / UX</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              HTML5, modern CSS3, responsive dashboard engineering with Streamlit, Plotly data visualization, and custom components.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap gap-1.5">
+            <span class="tech-badge text-[10px]">Streamlit</span>
+            <span class="tech-badge text-[10px]">HTML5 / CSS3</span>
+            <span class="tech-badge text-[10px]">Plotly</span>
+          </div>
+        </div>
+
+        <!-- Skill 7: Databases (Supabase, MongoDB, MySQL) -->
+        <div class="glass-card p-6 flex flex-col justify-between skill-card reveal-item" data-category="tools">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                  <i data-lucide="database" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-display font-bold text-white text-base">Databases & Storage</h4>
+              </div>
+              <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Database</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Schema design, relational data models (MySQL, Supabase PostgreSQL), and document stores (MongoDB) with robust retry mechanisms.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap gap-1.5">
+            <span class="tech-badge text-[10px]">Supabase</span>
+            <span class="tech-badge text-[10px]">MySQL</span>
+            <span class="tech-badge text-[10px]">MongoDB</span>
+          </div>
+        </div>
+
+        <!-- Skill 8: Developer Tools & Workflow -->
+        <div class="glass-card p-6 flex flex-col justify-between skill-card reveal-item" data-category="tools">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                  <i data-lucide="wrench" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-display font-bold text-white text-base">Developer Tools & Environments</h4>
+              </div>
+              <span class="text-xs font-mono font-semibold text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded">Tooling</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Git, GitHub version control, VS Code, Jupyter Notebook exploratory workflows, and Windows operating systems.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap gap-1.5">
+            <span class="tech-badge text-[10px]">Git & GitHub</span>
+            <span class="tech-badge text-[10px]">VS Code</span>
+            <span class="tech-badge text-[10px]">Jupyter</span>
+          </div>
+        </div>
+
+        <!-- Skill 9: Core Engineering Areas -->
+        <div class="glass-card p-6 flex flex-col justify-between skill-card reveal-item" data-category="aiml">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+                  <i data-lucide="layers" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-display font-bold text-white text-base">Core Focus Areas</h4>
+              </div>
+              <span class="text-xs font-mono font-semibold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded">Engineering</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Full-Stack Architecture, Backend API Development, Database Schema Design, Deep Learning, and NLP applications.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap gap-1.5">
+            <span class="tech-badge text-[10px]">Backend APIs</span>
+            <span class="tech-badge text-[10px]">Deep Learning</span>
+            <span class="tech-badge text-[10px]">NLP</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         EDUCATION & ACADEMIC BACKGROUND
+         ========================================================================== -->
+    <section id="education" class="space-y-10">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <div class="tech-badge">ACADEMICS</div>
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
+          Education & <span class="gradient-text">Milestones</span>
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          Academic foundations in Computer Science, Artificial Intelligence, and Mathematical Modeling.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <div class="timeline-track space-y-8">
+          
+          <!-- BMSCE College -->
+          <div class="relative glass-card p-6 sm:p-7 reveal-item">
+            <div class="timeline-dot"></div>
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+              <div>
+                <span class="text-xs font-mono font-bold text-cyan-400 bg-cyan-500/10 px-2.5 py-0.5 rounded">2024 – 2028</span>
+                <h3 class="text-xl font-display font-bold text-white mt-1.5">BMS College of Engineering</h3>
+              </div>
+              <div class="text-left sm:text-right">
+                <span class="text-xs text-slate-400 font-mono flex items-center sm:justify-end gap-1">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-rose-400"></i> Bengaluru, India
+                </span>
+                <span class="inline-block mt-1 text-sm font-mono font-bold text-emerald-400 bg-emerald-500/10 px-3 py-0.5 rounded border border-emerald-500/20">
+                  8.7 CGPA
+                </span>
+              </div>
+            </div>
+
+            <p class="text-sm font-semibold text-slate-200">
+              Bachelor of Engineering in Artificial Intelligence & Machine Learning
+            </p>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+              Specialized coursework in Machine Learning, Neural Networks, Computer Vision, Data Structures, Design and Analysis of Algorithms, Database Management Systems, and Probability & Statistics.
+            </p>
+          </div>
+
+          <!-- JVM Ranchi Class 12 -->
+          <div class="relative glass-card p-6 sm:p-7 reveal-item">
+            <div class="timeline-dot"></div>
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+              <div>
+                <span class="text-xs font-mono font-bold text-slate-400 bg-slate-800 px-2.5 py-0.5 rounded">2022 – 2023</span>
+                <h3 class="text-xl font-display font-bold text-white mt-1.5">Jawahar Vidya Mandir (JVM)</h3>
+              </div>
+              <div class="text-left sm:text-right">
+                <span class="text-xs text-slate-400 font-mono flex items-center sm:justify-end gap-1">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-rose-400"></i> Ranchi, India
+                </span>
+                <span class="inline-block mt-1 text-sm font-mono font-bold text-cyan-400 bg-cyan-500/10 px-3 py-0.5 rounded border border-cyan-500/20">
+                  Class 12 • 78.4%
+                </span>
+              </div>
+            </div>
+
+            <p class="text-sm font-semibold text-slate-200">
+              Central Board of Secondary Education (CBSE) – Senior Secondary
+            </p>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+              Physics, Chemistry, Mathematics, and Computer Science curriculum.
+            </p>
+          </div>
+
+          <!-- St. Xavier's Class 10 -->
+          <div class="relative glass-card p-6 sm:p-7 reveal-item">
+            <div class="timeline-dot"></div>
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+              <div>
+                <span class="text-xs font-mono font-bold text-slate-400 bg-slate-800 px-2.5 py-0.5 rounded">2020 – 2021</span>
+                <h3 class="text-xl font-display font-bold text-white mt-1.5">St. Xavier's English School</h3>
+              </div>
+              <div class="text-left sm:text-right">
+                <span class="text-xs text-slate-400 font-mono flex items-center sm:justify-end gap-1">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-rose-400"></i> Chaibasa, India
+                </span>
+                <span class="inline-block mt-1 text-sm font-mono font-bold text-emerald-400 bg-emerald-500/10 px-3 py-0.5 rounded border border-emerald-500/20">
+                  Class 10 • 96%
+                </span>
+              </div>
+            </div>
+
+            <p class="text-sm font-semibold text-slate-200">
+              Council for the Indian School Certificate Examinations (ICSE)
+            </p>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+              Graduated with Top Honors (96% Distinction) in Mathematics, Sciences, and Computer Applications.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         POSITIONS OF RESPONSIBILITY & BEYOND CODE
+         ========================================================================== -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Leadership & Responsibility (Cols 1-6) -->
+      <div class="lg:col-span-6 glass-card p-6 sm:p-8 space-y-6 reveal-item">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+            <i data-lucide="award" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-amber-400 uppercase font-semibold">Leadership & Operations</span>
+            <h3 class="text-xl font-display font-bold text-white">Positions of Responsibility</h3>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-3">
+          <div class="flex justify-between items-start">
+            <div>
+              <h4 class="font-bold text-white text-base">Volunteer – PhaseShift'26</h4>
+              <p class="text-xs text-slate-400">BMS College of Engineering Festival</p>
+            </div>
+            <span class="text-[11px] font-mono font-bold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded">2025 – 2026</span>
+          </div>
+
+          <div class="space-y-2 pt-1 text-xs text-slate-300">
+            <div class="feature-bullet">
+              Supported event management operations, including multi-tier participant coordination and venue staging for thousands of collegiate attendees.
+            </div>
+            <div class="feature-bullet">
+              Assisted organizing teams to ensure the smooth conduct, scheduling, and technical requirements of college festivals.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hobbies & Interests (Cols 7-12) -->
+      <div class="lg:col-span-6 glass-card p-6 sm:p-8 space-y-6 reveal-item">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+            <i data-lucide="compass" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-cyan-400 uppercase font-semibold">Beyond The Screen</span>
+            <h3 class="text-xl font-display font-bold text-white">Hobbies & Interests</h3>
+          </div>
+        </div>
+
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          When I am not training machine learning models or optimizing database queries, here is what fuels my curiosity and energy:
+        </p>
+
+        <div class="grid grid-cols-2 gap-3 pt-1">
+          
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center gap-2.5 hover:border-cyan-500/40 transition-colors">
+            <span class="text-xl">🏏</span>
+            <div>
+              <h5 class="text-xs font-bold text-white">Cricket</h5>
+              <p class="text-[10px] text-slate-400 font-mono">Strategy & Sports</p>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center gap-2.5 hover:border-cyan-500/40 transition-colors">
+            <span class="text-xl">✈️</span>
+            <div>
+              <h5 class="text-xs font-bold text-white">Travelling</h5>
+              <p class="text-[10px] text-slate-400 font-mono">Exploring Places</p>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center gap-2.5 hover:border-cyan-500/40 transition-colors">
+            <span class="text-xl">🔬</span>
+            <div>
+              <h5 class="text-xs font-bold text-white">AI/ML Research</h5>
+              <p class="text-[10px] text-slate-400 font-mono">Reading arXiv Papers</p>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center gap-2.5 hover:border-cyan-500/40 transition-colors">
+            <span class="text-xl">🌐</span>
+            <div>
+              <h5 class="text-xs font-bold text-white">Tech Communities</h5>
+              <p class="text-[10px] text-slate-400 font-mono">Hackathons & Meetups</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         CONTACT & COLLABORATION SECTION
+         ========================================================================== -->
+    <section id="contact" class="space-y-10 scroll-mt-24">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <div class="tech-badge">GET IN TOUCH</div>
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
+          Let's Build Something <span class="gradient-text">Exceptional</span>
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          Whether you have an internship opportunity, an AI/ML project in mind, or just want to discuss machine learning architectures—feel free to drop a line!
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Contact Cards (Cols 1-5) -->
+        <div class="lg:col-span-5 space-y-4">
+          
+          <!-- Email Card -->
+          <div class="glass-card p-5 flex items-center justify-between hover:border-cyan-400/50 transition-all">
+            <div class="flex items-center gap-3.5">
+              <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="text-[11px] text-slate-400 font-mono">DIRECT EMAIL</span>
+                <div class="text-sm font-semibold text-white">namankrag@gmail.com</div>
+              </div>
+            </div>
+            <button onclick="copyToClipboard('namankrag@gmail.com', 'Email address')" class="p-2 rounded-lg bg-slate-900 border border-slate-700 hover:border-cyan-400 text-slate-300 hover:text-white transition-colors" title="Copy Email">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- Phone Card -->
+          <div class="glass-card p-5 flex items-center justify-between hover:border-emerald-400/50 transition-all">
+            <div class="flex items-center gap-3.5">
+              <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <i data-lucide="phone" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="text-[11px] text-slate-400 font-mono">PHONE / WHATSAPP</span>
+                <div class="text-sm font-semibold text-white">+91 7870164005</div>
+              </div>
+            </div>
+            <button onclick="copyToClipboard('+917870164005', 'Phone number')" class="p-2 rounded-lg bg-slate-900 border border-slate-700 hover:border-emerald-400 text-slate-300 hover:text-white transition-colors" title="Copy Phone">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- LinkedIn Card -->
+          <a href="https://linkedin.com/in/naman-kumar-agrawal123" target="_blank" rel="noopener noreferrer" class="glass-card p-5 flex items-center justify-between hover:border-blue-400/50 transition-all group text-decoration-none">
+            <div class="flex items-center gap-3.5">
+              <div class="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
+                <i data-lucide="linkedin" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="text-[11px] text-slate-400 font-mono">LINKEDIN NETWORK</span>
+                <div class="text-sm font-semibold text-white group-hover:text-cyan-300 transition-colors">in/naman-kumar-agrawal123</div>
+              </div>
+            </div>
+            <div class="p-2 text-slate-400 group-hover:text-cyan-400">
+              <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+            </div>
+          </a>
+
+          <!-- GitHub Card -->
+          <a href="https://github.com/namankrag" target="_blank" rel="noopener noreferrer" class="glass-card p-5 flex items-center justify-between hover:border-purple-400/50 transition-all group text-decoration-none">
+            <div class="flex items-center gap-3.5">
+              <div class="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
+                <i data-lucide="github" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="text-[11px] text-slate-400 font-mono">CODE REPOSITORIES</span>
+                <div class="text-sm font-semibold text-white group-hover:text-cyan-300 transition-colors">github.com/namankrag</div>
+              </div>
+            </div>
+            <div class="p-2 text-slate-400 group-hover:text-cyan-400">
+              <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+            </div>
+          </a>
+
+          <!-- Location Badge -->
+          <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 text-xs font-mono text-slate-400 flex items-center gap-2">
+            <i data-lucide="map-pin" class="w-4 h-4 text-rose-400"></i>
+            <span>Based in Bengaluru, Karnataka, India • Available for Global Roles</span>
+          </div>
+
+        </div>
+
+        <!-- Interactive Send Message Form (Cols 6-12) -->
+        <div class="lg:col-span-7 glass-card p-6 sm:p-8 reveal-item">
+          
+          <h3 class="text-xl font-display font-bold text-white mb-2 flex items-center gap-2">
+            <i data-lucide="send" class="w-5 h-5 text-cyan-400"></i>
+            Send a Direct Message
+          </h3>
+          <p class="text-xs text-slate-400 mb-6 font-mono">
+            Fills a formatted mail draft to connect directly with Naman
+          </p>
+
+          <form id="contact-form" class="space-y-4">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label for="contact-name" class="text-xs font-mono text-slate-300">Your Name *</label>
+                <input type="text" id="contact-name" required placeholder="Jane Doe" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-400 focus:outline-none transition-colors">
+              </div>
+
+              <div class="space-y-1.5">
+                <label for="contact-email" class="text-xs font-mono text-slate-300">Your Email Address *</label>
+                <input type="email" id="contact-email" required placeholder="jane@company.com" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-400 focus:outline-none transition-colors">
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="contact-subject" class="text-xs font-mono text-slate-300">Subject</label>
+              <input type="text" id="contact-subject" placeholder="AI/ML Internship / Collaboration / Project Inquiry" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-400 focus:outline-none transition-colors">
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="contact-message" class="text-xs font-mono text-slate-300">Your Message *</label>
+              <textarea id="contact-message" rows="4" required placeholder="Hi Naman, I came across your portfolio and wanted to discuss..." class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-400 focus:outline-none transition-colors"></textarea>
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <span class="text-[11px] text-slate-500 font-mono">Response time: Usually &lt; 24 hours</span>
+              <button type="submit" class="btn-primary">
+                <i data-lucide="send" class="w-4 h-4"></i>
+                Send Message
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="relative z-10 border-t border-slate-800/80 bg-slate-950/90 py-10 px-4 sm:px-8 text-center sm:text-left">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+      
+      <div class="space-y-1">
+        <div class="font-display font-bold text-white text-base">
+          Naman Kumar Agrawal
+        </div>
+        <p class="text-xs text-slate-400 font-mono">
+          B.E. Artificial Intelligence & Machine Learning • BMSCE Bengaluru
+        </p>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs font-mono text-slate-400">
+        <span>Bengaluru, India (IST)</span>
+        <span>•</span>
+        <a href="#hero" class="text-cyan-400 hover:underline flex items-center gap-1">
+          Back to Top <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       RESUME QUICK-VIEW MODAL
+       ========================================================================== -->
+  <div id="resume-modal" class="modal-overlay">
+    <div class="modal-dialog p-6 sm:p-8 space-y-6">
+      
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+            <i data-lucide="file-text" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-display font-bold text-white">Naman Kumar Agrawal - Resume Overview</h3>
+            <p class="text-xs text-slate-400 font-mono">Bengaluru, India • namankrag@gmail.com</p>
+          </div>
+        </div>
+        <button class="btn-close-resume-modal p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Resume Summary Body -->
+      <div class="space-y-5 text-xs text-slate-300 font-sans max-h-[60vh] overflow-y-auto pr-2">
+        
+        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+          <h4 class="font-bold text-cyan-300 uppercase tracking-wider text-[11px] font-mono">Education</h4>
+          <div>
+            <strong class="text-white">BMS College of Engineering, Bengaluru</strong> (2024 - 2028)<br>
+            B.E. Artificial Intelligence & Machine Learning — <span class="text-emerald-400 font-bold">8.7 CGPA</span>
+          </div>
+          <div>
+            <strong class="text-white">Jawahar Vidya Mandir (CBSE), Ranchi</strong> (2022 - 2023) — Class 12: 78.4%
+          </div>
+          <div>
+            <strong class="text-white">St. Xavier's English School (ICSE), Chaibasa</strong> (2020 - 2021) — Class 10: 96%
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+          <h4 class="font-bold text-cyan-300 uppercase tracking-wider text-[11px] font-mono">Key Projects</h4>
+          <div>
+            <strong class="text-white">1. SmartClass – AI Attendance Management System:</strong>
+            <p class="text-slate-400 mt-0.5">dlib 128-D face embeddings (±15° micro-tilt), passive FFT anti-spoofing, Resemblyzer 256-D voice verification, Supabase retry policies, Streamlit UI.</p>
+          </div>
+          <div class="mt-2">
+            <strong class="text-white">2. LoanSense AI – Credit Risk Analytics:</strong>
+            <p class="text-slate-400 mt-0.5">Tuned Gradient Boosting (0.942 F1, 0.991 ROC-AUC, 95.8% accuracy), 5-fold stratified CV, leak-free ColumnTransformer, Streamlit risk simulator.</p>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+          <h4 class="font-bold text-cyan-300 uppercase tracking-wider text-[11px] font-mono">Technical Arsenal</h4>
+          <p><strong class="text-white">Languages:</strong> Python, Java, C, JavaScript, SQL</p>
+          <p><strong class="text-white">AI / ML:</strong> Machine Learning, Deep Learning, Scikit-Learn, Face & Voice Biometrics, EDA, NLP, Joblib</p>
+          <p><strong class="text-white">Databases & Tools:</strong> Supabase, MongoDB, MySQL, Streamlit, Git, GitHub, VS Code</p>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="flex items-center justify-between border-t border-slate-800 pt-4">
+        <span class="text-[11px] text-slate-500 font-mono">Press 'Esc' to close</span>
+        <div class="flex items-center gap-2">
+          <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 text-xs font-semibold hover:bg-slate-700 transition-colors flex items-center gap-1.5">
+            <i data-lucide="printer" class="w-3.5 h-3.5"></i> Print / Save PDF
+          </button>
+          <button class="btn-close-resume-modal px-4 py-1.5 rounded-lg bg-cyan-500 text-slate-950 text-xs font-bold hover:bg-cyan-400 transition-colors">
+            Close
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/particles.js"></script>
+  <script src="js/demos.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+  </script>
+</body>
+</html>

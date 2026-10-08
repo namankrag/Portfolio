@@ -1,0 +1,20 @@
+{
+  "name": "naman-agrawal-portfolio",
+  "version": "1.0.0",
+  "description": "Interactive Landing Page & Portfolio for Naman Kumar Agrawal - AI & ML Engineer",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "python -m http.server 3000"
+  },
+  "keywords": [
+    "portfolio",
+    "ai-engineer",
+    "machine-learning",
+    "landing-page",
+    "streamlit",
+    "interactive-demos"
+  ],
+  "author": "Naman Kumar Agrawal",
+  "license": "MIT"
+}
